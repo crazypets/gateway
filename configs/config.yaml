@@ -1,0 +1,44 @@
+addr: ":8880"
+
+permission_addr: "http://localhost:8881"
+
+proxy_services:
+  - addr: "localhost:8881"
+    endpoints:
+      - {uri: "/auth/sign-up-credentials", method: "POST"}
+      - {uri: "/auth/confirm-account", method: "GET"}
+      - {uri: "/auth/sign-in-credentials", method: "POST"}
+      - {uri: "/auth/sign-in-social", method: "POST"}
+      # think about naming
+      - {uri: "/auth/request-password-recovery", method: "GET"}
+      - {uri: "/auth/recover-password", method: "POST"}
+      - {uri: "/auth/password", method: "PUT"}
+      - {uri: "/auth/token", method: "PUT"}
+      - {uri: "/auth/check-login", method: "GET"}
+      - {uri: "/auth/profile", method: "GET"}
+      - {uri: "/auth/profile", method: "PUT"}
+      - {uri: "/admin/add-group-policy", method: "POST"}
+      - {uri: "/admin/add-policy", method: "POST"}
+      - {uri: "/admin/remove-group-policy", method: "POST"}
+      - {uri: "/admin/remove-policy", method: "POST"}
+
+  - addr: "localhost:8881"
+    enpoints:
+      - {uri: "/file/upload", method: "POST"}
+      - {uri: "/file/get", method: "GET"}
+
+jaeger:
+  agent_addr: "0.0.0.0:6831"
+  service_name: "crazypets"
+
+consul:
+  addr: "localhost:8500"
+  agent_addr: "localhost:8880"
+  service_family_name: "gateway-services"
+
+tg_bot_addr: "http://localhost:7171"
+
+swagger_base_url: "localhost:8880"
+
+logger:
+  level: "info"
